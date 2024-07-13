@@ -40,9 +40,29 @@
                                 <th>Nama</th>
                                 <th>Harga</th>
                                 <th>Jenis</th>
+                                <th>Gambar</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
+                        <tbody>
+                            @foreach ($products as $item)
+                                <tr>
+                                    <td>{{ $loop->index + 1 }}</td>
+                                    <td>{{ $item->nama }}</td>
+                                    <td>{{ $item->harga }}</td>
+                                    <td>{{ $item->jenis }}</td>
+                                    <td style="width: 50px;">
+                                        @foreach ($item->images as $item)
+                                            <div class="avatar-md me-4">
+                                                <img src="{{ URL::asset('./uploads/' . $item->nama) }}" class="img-fluid"
+                                                    alt="">
+                                            </div>
+                                        @endforeach
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            @endforeach
+                        </tbody>
                     </table>
                 </div>
             </div>

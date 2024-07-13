@@ -12,7 +12,11 @@ class MasterProductController extends Controller
 
     public function index(Request $request)
     {
-        return view('pages.pages-master-product');
+
+        $products = ProductModel::all();
+        return view('pages.pages-master-product', [
+            'products' => $products
+        ]);
     }
 
     public function add(Request $request)
@@ -44,7 +48,6 @@ class MasterProductController extends Controller
                 'deskripsi' => $request->input('deskripsi'),
             ]);
 
-            file_put_contents('test.txt', $productImages);
             foreach ($productImages as $value) {
                 $produk->images()->create([
                     'nama' => $value
